@@ -13,7 +13,21 @@
                 <!-- ADD AVATAR HERE -->
                 <p>¯\_(ツ)_/¯</p>
             </div>
+            <terminal></terminal>
             <!-- <div class="stem"></div> -->
+            <div id="canvas">
+            </div>
+        </div>
+    </body>
+    <script>
+        let FEEDBACKS = [
+            '(╯°□°）╯︵ ┻━┻'
+        ];
+
+        const app = Vue.createApp({});
+
+        app.component('terminal', {
+            template: `
             <div id="terminal">
                 <div id="stdout-window" v-if="mode === 'stdout'" @click="focusInput">
                     <p v-for="line in stdout">
@@ -35,23 +49,13 @@
                     </ul>
                     <teleport to="#canvas">
                         <transition name="pomodoro-animation">
-                            <h1 id="pomodoro-title" v-if="selected == 'pomodoro'">POMODORO</h1>
+                            <h1 id="pomodoro-title" v-if="selected === 'pomodoro'">POMODORO</h1>
                         </transition>
-                        <projects-pomodoro></projects-pomodoro>
+                        <projects-pomodoro v-bind:show="selected === 'pomodoro'"></projects-pomodoro>
                     </teleport>
                 </div>
             </div>
-            <div id="canvas">
-
-            </div>
-        </div>
-    </body>
-    <script>
-        let FEEDBACKS = [
-            '(╯°□°）╯︵ ┻━┻'
-        ];
-
-        const Terminal = {
+            `,
             data() {
                 return {
                     mode: 'stdout',
@@ -69,9 +73,7 @@
                     showCursor: true,
                     onComplete: (self) => {
                         this.cmd = 'echo $ABOUT_ME';
-                        let cmd = document.getElementById("cmd");
-                        console.log(cmd);
-                        cmd.dispatchEvent (new KeyboardEvent ('keyup', {
+                        document.getElementById("cmd").dispatchEvent (new KeyboardEvent ('keyup', {
                             key: 'enter',
                             keyCode: 13
                         }));
@@ -124,23 +126,26 @@
                     )
                 },
                 quitCli() {
-                    console.log("quitting CLI mode");
+                    this.selected = null;
                     this.mode = 'stdout';
+                    console.log("quitting CLI mode");
                 }
             }
-        }
 
-        Vue.createApp(Terminal).mount("#terminal");
+        })
 
-        // const app = Vue.createApp({});
-        // const vm = app.mount("#app");
+        app.component('projects-pomodoro', {
+            template: `
+            <div v-if="show">
+                <p>POMODORO LOGO GOES HERE</p>
+                <a href="https://github.com/ErickRDev/rusty-tomato">Repository</a>
+                <p>Ipsum dolor..</p>
+            </div>
+            `,
+            props: [ "show" ]
+        })
 
-        // app.component('projects-pomodoro', {
-        //     template: `
-        //         <p>POMODORO LOGO GOES HERE</p>
-        //         <p>https://github.com/ErickRDev/rusty-tomato</p>
-        //         <p>Ipsum dolor..</p>
-        //     `,
-        // })
+        const vm = app.mount("#app");
+
     </script>
 </html>
