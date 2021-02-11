@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS';
+}
+
+#app {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60ch;
+}
+
+#intro {
+    text-align: center;
+}
+
+#intro h1 {
+    margin-bottom: 0;
+}
+
+#terminal {
+    font-size: 0.8rem;
+    min-height: 30ch;
+    padding: 1px;
+    border: var(--border-thin) solid;
+    color: white;
+    background-color: black;
+}
+
+#terminal * {
+    color: inherit;
+    background-color: inherit;
+}
+
+#stdout-window {
+    min-height: inherit;
+}
+
+#stdout-window > * {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#stdout-window > * + * {
+    margin-top: 0.5rem;
+}
+
+#cmd {
+    border: inherit;
+    font-size: inherit;
+}
+
+#cmd:focus {
+    outline: none;
+}
+
+#pomodoro-title {
+    text-align: center;
+}
+
+.pomodoro-animation-enter-active {
+    transition: all 1s ease 0s;
+}
+
+.pomodoro-animation-enter-from {
+    transform: translateY(-5ch);
+    /* opacity: 0; */
+}
+
+/* .pomodoro-animation-enter-to {
+    transform: translateY(-20ch);
+    opacity: 0;
+} */
+
+.stem {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 0.5ch;
+    min-height: 10ch;
+    border-left: 0.5ch solid black;
+}

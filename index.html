@@ -1,0 +1,146 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="styles.css">
+
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/velocity-animate@2.0/velocity.min.js"></script> -->
+    </header>
+    <body>
+        <div id="app">
+            <div id="intro">
+                <h1>Erick Rocha</h1>
+                <!-- ADD AVATAR HERE -->
+                <p>¯\_(ツ)_/¯</p>
+            </div>
+            <!-- <div class="stem"></div> -->
+            <div id="terminal">
+                <div id="stdout-window" v-if="mode === 'stdout'" @click="focusInput">
+                    <p v-for="line in stdout">
+                        {{line}}
+                    </p>
+                    {{cmdPrefix}}<input id="cmd" autofocus v-model="cmd" @keyup.enter="executeCommand"/>
+                </div>
+                <div id="gui-window" v-if="mode === 'gui'">
+                    <ul>
+                        <li>
+                            <button v-on:click="selected = 'pomodoro'">pomodoro</button>
+                        </li>
+                        <li>
+                            <button v-on:click="selected = null">reset</button>
+                        </li>
+                        <li>
+                            <button v-on:click="quitCli">quit</button>
+                        </li>
+                    </ul>
+                    <teleport to="#canvas">
+                        <transition name="pomodoro-animation">
+                            <h1 id="pomodoro-title" v-if="selected == 'pomodoro'">POMODORO</h1>
+                        </transition>
+                        <projects-pomodoro></projects-pomodoro>
+                    </teleport>
+                </div>
+            </div>
+            <div id="canvas">
+
+            </div>
+        </div>
+    </body>
+    <script>
+        let FEEDBACKS = [
+            '(╯°□°）╯︵ ┻━┻'
+        ];
+
+        const Terminal = {
+            data() {
+                return {
+                    mode: 'stdout',
+                    cmdPrefix: '$ ',
+                    cmd: null,
+                    selected: null,
+                    stdout: [],
+                    feedbacksIndex: 0
+                }
+            },
+            mounted() {
+                let typed = new Typed('#cmd', {
+                    strings: [ 'echo $ABOUT_ME' ],
+                    typeSpeed: 20,
+                    showCursor: true,
+                    onComplete: (self) => {
+                        this.cmd = 'echo $ABOUT_ME';
+                        let cmd = document.getElementById("cmd");
+                        console.log(cmd);
+                        cmd.dispatchEvent (new KeyboardEvent ('keyup', {
+                            key: 'enter',
+                            keyCode: 13
+                        }));
+                    }
+                })
+            },
+            methods: {
+                focusInput() {
+                    document.getElementById("cmd").focus();
+                },
+                executeCommand() {
+                    console.log("Executing command: " + this.cmd);
+
+                    this.stdout.push(this.cmdPrefix + this.cmd);
+
+                    switch (this.cmd) {
+                        case 'echo $ABOUT_ME':
+                            this.stdout.push('Howdie! My name is Erick, I\'m a computer scientist who loves everything-software!');
+                            break;
+                        case 'whoami':
+                            this.stdout.push('Erick Rocha');
+                            break;
+                        case 'ls':
+                            break;
+                        case 'clear':
+                            this.stdout.length = 0;
+                            break;
+                        case '?':
+                            break;
+                        case '.':
+                            this.mode = 'gui';
+                            break;
+                        default:
+                            this.stdout.push(FEEDBACKS[this.feedbacksIndex % FEEDBACKS.length]);
+                            this.feedbacksIndex += 1;
+                            break;
+                    }
+
+                    this.cmd = '';
+                },
+                beforeEnterSelectionAnimation(el) {
+                    console.log("Before entering selection animation for element: " + el);
+                    el.style.transformOrigin = "20% 40%";
+                },
+                enterSelectionAnimation(el, done) {
+                    console.log("Entering selection animation for element: " + el);
+                    el.velocity(
+                        { 'translateY': '100px' },
+                        { complete: done }
+                    )
+                },
+                quitCli() {
+                    console.log("quitting CLI mode");
+                    this.mode = 'stdout';
+                }
+            }
+        }
+
+        Vue.createApp(Terminal).mount("#terminal");
+
+        // const app = Vue.createApp({});
+        // const vm = app.mount("#app");
+
+        // app.component('projects-pomodoro', {
+        //     template: `
+        //         <p>POMODORO LOGO GOES HERE</p>
+        //         <p>https://github.com/ErickRDev/rusty-tomato</p>
+        //         <p>Ipsum dolor..</p>
+        //     `,
+        // })
+    </script>
+</html>
