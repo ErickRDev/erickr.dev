@@ -17,6 +17,13 @@
     margin-bottom: 0;
 }
 
+#avatar-pic {
+    margin-left: auto;
+    margin-right: auto;
+    width: min(30vw, 160px);
+    border-radius: min(30vw, 150px);
+}
+
 #terminal {
     font-size: 0.8rem;
     min-height: 30ch;
@@ -64,6 +71,22 @@
 .pomodoro-animation-enter-from {
     transform: translateY(-5ch);
     /* opacity: 0; */
+}
+
+.stack {
+  --space: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack > * {
+  margin-top: 0;
+  margin-bottom: 0;
+} 
+
+.stack > * + * {
+  margin-top: var(--space);
 }
 
 .stem {
