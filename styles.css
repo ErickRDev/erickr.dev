@@ -1,3 +1,14 @@
+:root {
+    --terminal-size: 40ch;
+    --terminal-background: #000;
+    --color-6: #0C0E0C;
+    --color-5: #191919;
+    --color-4: #2D2D2D;
+    --color-3: #3B444F;
+    --color-2: #303A48;
+    --color-1: #252D3B;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Trebuchet MS';
@@ -6,7 +17,7 @@
 #app {
     margin-left: auto;
     margin-right: auto;
-    max-width: 60ch;
+    max-width: 80ch;
 }
 
 #intro {
@@ -24,16 +35,32 @@
     border-radius: min(30vw, 150px);
 }
 
-#terminal {
-    font-size: 0.8rem;
-    min-height: 30ch;
-    padding: 1px;
-    border: var(--border-thin) solid;
-    color: white;
-    background-color: black;
+#terminal-top-bar {
+    border: none;
+    background-color: var(--color-5);
+    min-height: calc(var(--terminal-size) * 0.05);
+    display: flex;
+    flex-direction: row-reverse;
 }
 
-#terminal * {
+#terminal-top-bar > button {
+    border: none;
+    border-radius: 80%;
+    border-color: var(--color-6);
+    background-color: var(--color-6);
+    color: white;
+}
+
+#terminal-content {
+    background-color: var(--color-6);
+    min-height: var(--terminal-size);
+    font-size: 0.8rem;
+    padding: 1px;
+    color: white;
+    box-shadow: 5px 5px 5px rgb(138, 132, 132);
+}
+
+#terminal-content * {
     color: inherit;
     background-color: inherit;
 }
@@ -42,18 +69,21 @@
     min-height: inherit;
 }
 
-#stdout-window > * {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-#stdout-window > * + * {
-    margin-top: 0.5rem;
-}
-
 #cmd {
     border: inherit;
     font-size: inherit;
+}
+
+#gui-window > ul {
+    padding: 0;
+    list-style-type: none;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+#gui-window > ul > li > button {
+    width: 100%;
+    border: none;
 }
 
 #cmd:focus {
@@ -70,23 +100,6 @@
 
 .pomodoro-animation-enter-from {
     transform: translateY(-5ch);
-    /* opacity: 0; */
-}
-
-.stack {
-  --space: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.stack > * {
-  margin-top: 0;
-  margin-bottom: 0;
-} 
-
-.stack > * + * {
-  margin-top: var(--space);
 }
 
 .stem {

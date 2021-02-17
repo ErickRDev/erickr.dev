@@ -1,5 +1,6 @@
 <html>
     <header>
+        <link rel="stylesheet" href="layouts.css">
         <link rel="stylesheet" href="styles.css">
 
         <script src="https://unpkg.com/vue@next"></script>
@@ -7,13 +8,12 @@
     </header>
     <body>
         <div id="app">
-            <div class="stack">
+            <div class="stack" style="height: 100%">
                 <div id="intro">
                     <h1>Erick Rocha</h1>
                 </div>
                 <img id="avatar-pic" src="assets/imgs/no.jpg">
                 <terminal></terminal>
-                <!-- <div class="stem"></div> -->
                 <div id="canvas">
                 </div>
             </div>
@@ -29,30 +29,17 @@
         app.component('terminal', {
             template: `
             <div id="terminal">
-                <div id="stdout-window" v-if="mode === 'stdout'" @click="focusInput">
-                    <p v-for="line in stdout">
-                        {{line}}
-                    </p>
-                    {{cmdPrefix}}<input id="cmd" autofocus v-model="cmd" @keyup.enter="executeCommand"/>
+                <div id="terminal-top-bar">
+                    <button @click="collapsed = !collapsed">-</button>
                 </div>
-                <div id="gui-window" v-if="mode === 'gui'">
-                    <ul>
-                        <li>
-                            <button v-on:click="selected = 'pomodoro'">pomodoro</button>
-                        </li>
-                        <li>
-                            <button v-on:click="selected = null">reset</button>
-                        </li>
-                        <li>
-                            <button v-on:click="quitCli">quit</button>
-                        </li>
-                    </ul>
-                    <teleport to="#canvas">
-                        <transition name="pomodoro-animation">
-                            <h1 id="pomodoro-title" v-if="selected === 'pomodoro'">POMODORO</h1>
-                        </transition>
-                        <projects-pomodoro v-bind:show="selected === 'pomodoro'"></projects-pomodoro>
-                    </teleport>
+                <div id="terminal-content" v-if="!collapsed">
+                    <div id="stdout-window" class="stack stack-exception" v-if="mode === 'stdout'" @click="focusInput">
+                        <p v-for="line in stdout">
+                            {{line}}
+                        </p>
+                        {{cmdPrefix}}<input id="cmd" autofocus v-model="cmd" @keyup.enter="executeCommand"/>
+                    </div>
+                    <gui v-if="mode === 'gui'" :quit="this.quitCli"></gui>
                 </div>
             </div>
             `,
@@ -61,7 +48,7 @@
                     mode: 'stdout',
                     cmdPrefix: '$ ',
                     cmd: null,
-                    selected: null,
+                    collapsed: false,
                     stdout: [],
                     feedbacksIndex: 0
                 }
@@ -114,24 +101,45 @@
 
                     this.cmd = '';
                 },
-                beforeEnterSelectionAnimation(el) {
-                    console.log("Before entering selection animation for element: " + el);
-                    el.style.transformOrigin = "20% 40%";
-                },
-                enterSelectionAnimation(el, done) {
-                    console.log("Entering selection animation for element: " + el);
-                    el.velocity(
-                        { 'translateY': '100px' },
-                        { complete: done }
-                    )
-                },
                 quitCli() {
-                    this.selected = null;
                     this.mode = 'stdout';
                     console.log("quitting CLI mode");
                 }
             }
 
+        })
+
+        app.component('gui', {
+            template: `
+            <div id="gui-window">
+                <ul class="stack">
+                    <li>
+                        <button @click="selected = 'xp'">Professional Experience</button>
+                    </li>
+                    <li>
+                        <button @click="selected = 'pomodoro'">Pomodoro</button>
+                    </li>
+                    <li>
+                        <button @click="selected = null">Reset</button>
+                    </li>
+                    <li>
+                        <button @click="quit">X</button>
+                    </li>
+                </ul>
+                <teleport to="#canvas">
+                    <transition name="pomodoro-animation">
+                        <h1 id="pomodoro-title" v-if="selected === 'pomodoro'">POMODORO</h1>
+                    </transition>
+                    <projects-pomodoro v-bind:show="selected === 'pomodoro'"></projects-pomodoro>
+                </teleport>
+            </div>
+            `,
+            props: [ "quit" ],
+            data() {
+                return {
+                    selected: null,
+                }
+            }
         })
 
         app.component('projects-pomodoro', {
