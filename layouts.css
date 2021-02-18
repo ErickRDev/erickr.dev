@@ -1,3 +1,13 @@
+.box {
+    padding: var(--s1);
+    background-color: white;
+    color: black;
+}
+
+.box * {
+    color: inherit;
+}
+
 .stack {
     --space: 1.5rem;
     display: flex;
@@ -14,7 +24,11 @@
     margin-top: var(--space);
 }
 
-.stack-exception {
+.stack-stdout {
     --space: 0.5rem;
     display: block;
+}
+
+.stack-gui-menu-items {
+    --space: 0.3rem;
 }

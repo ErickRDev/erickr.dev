@@ -8,7 +8,7 @@
     </header>
     <body>
         <div id="app">
-            <div class="stack" style="height: 100%">
+            <div id="app-content" class="stack">
                 <div id="intro">
                     <h1>Erick Rocha</h1>
                 </div>
@@ -33,7 +33,7 @@
                     <button @click="collapsed = !collapsed">-</button>
                 </div>
                 <div id="terminal-content" v-if="!collapsed">
-                    <div id="stdout-window" class="stack stack-exception" v-if="mode === 'stdout'" @click="focusInput">
+                    <div id="stdout-content" class="stack stack-stdout" v-if="mode === 'stdout'" @click="focusInput">
                         <p v-for="line in stdout">
                             {{line}}
                         </p>
@@ -111,21 +111,34 @@
 
         app.component('gui', {
             template: `
-            <div id="gui-window">
-                <ul class="stack">
-                    <li>
-                        <button @click="selected = 'xp'">Professional Experience</button>
-                    </li>
-                    <li>
-                        <button @click="selected = 'pomodoro'">Pomodoro</button>
-                    </li>
-                    <li>
-                        <button @click="selected = null">Reset</button>
-                    </li>
-                    <li>
-                        <button @click="quit">X</button>
-                    </li>
-                </ul>
+            <div id="gui" class="stack">
+                <div id="gui-title-bar">
+                    <h1>ABOUT ME</h1>
+                </div>
+                <div id="gui-content">
+                    <ul class="stack stack-gui-menu-items" v-if="selected === 'projects'">
+                        <li>
+                            <a @click="selected = 'pomodoro'">POMODORO CLI</a>
+                        </li>
+                        <li>
+                            <a @click="selected = null">BACK</a>
+                        </li>
+                    </ul>
+                    <ul class="stack stack-gui-menu-items" v-else>
+                        <li>
+                            <a @click="selected = 'xp'">PROFESSIONAL EXPERIENCE</a>
+                        </li>
+                        <li>
+                            <a @click="selected = 'projects'">PROJECTS</a>
+                        </li>
+                        <li>
+                            <a @click="selected = null">RESET</a>
+                        </li>
+                        <li>
+                            <a @click="quit">EXIT</a>
+                        </li>
+                    </ul>
+                </div>
                 <teleport to="#canvas">
                     <transition name="pomodoro-animation">
                         <h1 id="pomodoro-title" v-if="selected === 'pomodoro'">POMODORO</h1>
