@@ -8,14 +8,11 @@
     </header>
     <body>
         <div id="app">
+            <navbar></navbar>
             <div id="app-content" class="stack">
-                <div id="intro">
-                    <h1>Erick Rocha</h1>
-                </div>
                 <img id="avatar-pic" src="assets/imgs/no.jpg">
                 <terminal></terminal>
-                <div id="canvas">
-                </div>
+                <div id="canvas"></div>
             </div>
         </div>
     </body>
@@ -25,6 +22,25 @@
         ];
 
         const app = Vue.createApp({});
+
+        app.component('navbar', {
+            template: `
+            <div id="navbar">
+                <ul id="navbar-content">
+                    <li>
+                        <a id="navbar-title" href="#index.html">ERICKR.DEV</a>
+                    </li>
+                    <li>
+                        <div id="navbar-locales-menu">
+                            <button id="locale-en" class="locale-button">EN</button>
+                            <button id="locale-pt" class="locale-button">PT</button>
+                            <button id="locale-fr" class="locale-button">FR</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            `
+        })
 
         app.component('terminal', {
             template: `
@@ -78,7 +94,7 @@
 
                     switch (this.cmd) {
                         case 'echo $ABOUT_ME':
-                            this.stdout.push('Howdie! My name is Erick, I\'m a computer scientist who loves everything-software!');
+                            this.stdout.push('Howdie! Welcome to my little corner on the internet! My name is Erick, I\'m a computer scientist who loves everything-software!');
                             break;
                         case 'whoami':
                             this.stdout.push('Erick Rocha');
