@@ -262,21 +262,22 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding-right: 1em;
 }
 
 .timeline-item-left:hover {
     transform: translateX(-2px);
     border: 1px solid black;
     box-shadow: 10px -5px 21px 0px #76776B;
-    /* background-color: var(--color-6);
-    color: white; */
-    justify-content: center;
+    background-color: var(--color-6);
+    color: white;
 }
 
 .timeline-item-right {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    padding-left: 1em;
 }
 
 .timeline-item-right:hover {
@@ -285,17 +286,12 @@
     box-shadow: -10px -5px 21px 0px #76776B;
     background-color: var(--color-6);
     color: white;
-    justify-content: center;
 }
 
 .timeline-item-1 {
     grid-row: 2/2;
     grid-column: 3/3;
 }
-
-/* .timeline-item-1:hover {
-    transform: ;
-} */
 
 .timeline-item-2 {
     grid-row: 4/4;
