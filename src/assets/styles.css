@@ -258,9 +258,18 @@
     grid-template-rows: 10px 2fr 10px 2fr 10px 2fr 10px 2fr;
 }
 
-.timeline-item-left {
+.timeline-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+/* .timeline-item > div > a {
+    align-self: flex-end;
+    justify-self: flex-end;
+} */
+
+.timeline-item-left {
     justify-content: flex-end;
     padding-right: 1em;
 }
@@ -274,8 +283,6 @@
 }
 
 .timeline-item-right {
-    display: flex;
-    align-items: center;
     justify-content: flex-start;
     padding-left: 1em;
 }
