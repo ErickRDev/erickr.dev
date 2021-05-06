@@ -3,11 +3,11 @@
         <ul id="app-navbar-content">
             <li>
                 <!-- TODO: fix button layouts in navbar -->
-                <a class="app-navbar-button" href="#">BLOG</a>
+                <a class="app-navbar-button" href="/">BLOG</a>
                 |
-                <a class="app-navbar-button">ERICKR.DEV</a>
+                <a class="app-navbar-button">{{title}}</a>
                 |
-                <a class="app-navbar-button" href="#">ABOUT ME</a>
+                <a class="app-navbar-button" href="/about">ABOUT ME</a>
             </li>
             <li>
                 <div id="navbar-locales-menu">
@@ -22,6 +22,11 @@
 
 <script>
 export default {
-    name: 'NavBar'
+    name: 'NavBar',
+    data () {
+        return {
+            title: "ERICKR.DEV"
+        }
+    }
 }
 </script>
