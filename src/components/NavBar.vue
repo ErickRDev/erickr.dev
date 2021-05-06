@@ -2,7 +2,12 @@
     <div id="app-navbar">
         <ul id="app-navbar-content">
             <li>
-                <a id="app-navbar-title" href="#index.html">ERICKR.DEV</a>
+                <!-- TODO: fix button layouts in navbar -->
+                <a class="app-navbar-button" href="#">BLOG</a>
+                |
+                <a class="app-navbar-button">ERICKR.DEV</a>
+                |
+                <a class="app-navbar-button" href="#">ABOUT ME</a>
             </li>
             <li>
                 <div id="navbar-locales-menu">
