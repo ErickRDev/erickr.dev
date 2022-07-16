@@ -1,0 +1,27 @@
+Design Guidelines
+-----------------
+- Minimalistic
+- Responsive
+- Ample space to display content
+- With effects/transitions
+
+Content
+-------
+- About me
+- Link to other relevant medias (linkedin, hackerrank, github, etc)
+- Topics should align with my interests and motivate exploration
+
+Some ideas:
+
+- Document projects with their results
+- Explore science-concepts
+  - Chaos
+  - Universe & astrophysics
+  - Game theory
+  - Psychology
+- Explore tech-concepts
+  - Functional Programming
+    - Javascript
+    - Haskell
+  - DevOps with Nix
+  - Continuous Delivery
