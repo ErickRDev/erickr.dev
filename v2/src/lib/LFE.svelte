@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { extent, line, scaleLinear } from 'd3';
+  import { scaleLinear } from 'd3';
 
   type DataPoint = [number, number];
 
@@ -16,51 +16,61 @@
     return series;
   };
 
+  const generateLFEData = (x0: number, iterations: number, sampleSize: number) => {
+    const data: DataPoint[] = [];
+
+    for (let r = 0; r < 4.0; r += 0.01) {
+      const populationEvolution = unwindSeries(x0, r, iterations);
+      const uniquePopulationSizes = new Set<number>();
+
+      for (let i = iterations - sampleSize; i < iterations; i ++) {
+        const [, population] = populationEvolution[i];
+        uniquePopulationSizes.add(population);
+      }
+
+      uniquePopulationSizes.forEach((populationSize: number) => data.push([r, populationSize]));
+    }
+
+    return data;
+  }
+
   const margin = { top: 20, right: 20, bottom: 20, left: 30 };
 
   const width = 640 + margin.left + margin.right;
   const height = 202 + margin.bottom + margin.top;
-  const generations = 100;
 
-  $: x0 = 0.5;
-  $: r = 2.5;
+  const x0 = 0.5;
+  const iterations = 900;
+  const sampleSize = 400;
 
-  $: data = unwindSeries(x0, r, generations);
-
-  const xTicks = [] as number[];
-  for (let i = 0; i <= generations; i += generations / 10) {
-    xTicks.push(i);
-  }
+  $: data = generateLFEData(x0, iterations, sampleSize);
 
   $: xScale = scaleLinear()
-    .domain(extent(data, (d) => d[0]) as [number, number])
+    .domain([0, 4])
     .range([margin.left, width - margin.left]);
-
-  const yTicks: number[] = [];
-  for (let i = 0; i <= 1; i += 0.1) {
-    yTicks.push(i);
-  }
 
   $: yScale = scaleLinear()
     .domain([1, 0])
     .range([margin.top, height - margin.bottom]);
 
-  $: path = line()
-    .x((d) => xScale(d[0]))
-    .y((d) => yScale(d[1]));
+  const xTicks = [] as number[];
+  for (let i = 0; i <= 4; i++) {
+    xTicks.push(i);
+  }
+
+  const yTicks: number[] = [];
+  for (let i = 0; i <= 1; i += 0.1) {
+    yTicks.push(i);
+  }
 </script>
 
 <h1>The "Logistic Difference Equation"</h1>
 
-<div class="config">
-  x0: <input type="number" bind:value={x0} />
-  r: <input type="number" bind:value={r} />
-</div>
-
-<!--<svg {width} {height} style="border: 1px solid black">-->
 <svg {width} {height}>
   <g transform="translate(0,0)">
-    <path d={path(data)} fill="none" stroke="currentColor" stroke-width="1.5" />
+    {#each data as dataPoint}
+      <circle r="1" cx={xScale(dataPoint[0])} cy={yScale(dataPoint[1])} fill="black"/>
+    {/each}
   </g>
 
   <!-- y axis -->
@@ -88,7 +98,6 @@
       </g>
     {/each}
 
-    <!--<path class="axis-line" stroke="black" d={`M${margin.left},0h${width - margin.right - margin.left}`} />-->
     <path class="axis-line" d={`M${margin.left},0V-1H${width - margin.right}V0`} />
   </g>
 </svg>
