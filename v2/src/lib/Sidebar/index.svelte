@@ -19,7 +19,7 @@
 </script>
 
 <div class="sidebar">
-  <h3 class="logo">ERICKR.DEV</h3>
+  <a class="logo" href="/">ERICKR.DEV</a>
   <p>Welcome to my byte-sized blog! :)</p>
   <p>"Doubt is not a pleasant condition, but certainty is absurd."</p>
   <div class="posts">

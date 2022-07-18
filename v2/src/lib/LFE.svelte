@@ -23,7 +23,7 @@
       const populationEvolution = unwindSeries(x0, r, iterations);
       const uniquePopulationSizes = new Set<number>();
 
-      for (let i = iterations - sampleSize; i < iterations; i ++) {
+      for (let i = iterations - sampleSize; i < iterations; i++) {
         const [, population] = populationEvolution[i];
         uniquePopulationSizes.add(population);
       }
@@ -32,7 +32,7 @@
     }
 
     return data;
-  }
+  };
 
   const margin = { top: 20, right: 20, bottom: 20, left: 30 };
 
@@ -40,23 +40,23 @@
   const height = 202 + margin.bottom + margin.top;
 
   const x0 = 0.5;
-  const iterations = 900;
-  const sampleSize = 400;
+  const iterations = 600;
+  const sampleSize = 300;
 
-  $: data = generateLFEData(x0, iterations, sampleSize);
+  const data = generateLFEData(x0, iterations, sampleSize);
 
-  $: xScale = scaleLinear()
+  const xScale = scaleLinear()
     .domain([0, 4])
     .range([margin.left, width - margin.left]);
-
-  $: yScale = scaleLinear()
-    .domain([1, 0])
-    .range([margin.top, height - margin.bottom]);
 
   const xTicks = [] as number[];
   for (let i = 0; i <= 4; i++) {
     xTicks.push(i);
   }
+
+  const yScale = scaleLinear()
+    .domain([1, 0])
+    .range([margin.top, height - margin.bottom]);
 
   const yTicks: number[] = [];
   for (let i = 0; i <= 1; i += 0.1) {
@@ -69,7 +69,7 @@
 <svg {width} {height}>
   <g transform="translate(0,0)">
     {#each data as dataPoint}
-      <circle r="1" cx={xScale(dataPoint[0])} cy={yScale(dataPoint[1])} fill="black"/>
+      <circle r="1" cx={xScale(dataPoint[0])} cy={yScale(dataPoint[1])} fill="black" />
     {/each}
   </g>
 
@@ -78,7 +78,7 @@
     {#each yTicks as tick}
       <g class="tick" opacity="1" transform="translate(0, {yScale(tick)})">
         <line stroke="currentColor" x2="-5" />
-        <text dy="0.32em" fill="currentColor" x="{5 - margin.left}" font-size="smaller">
+        <text dy="0.32em" fill="currentColor" x={5 - margin.left} font-size="smaller">
           {tick.toFixed(1)}
         </text>
       </g>
