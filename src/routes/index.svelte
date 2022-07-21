@@ -1,10 +1,16 @@
 <script>
-  import Terminal from '../lib/Terminal.svelte';
+  import Terminal from '$lib/Terminal.svelte';
+  import GitHub from '$lib/Icons/GitHub.svelte';
+  import LinkedIn from '$lib/Icons/LinkedIn.svelte';
 </script>
 
 <div id="about-me-container">
   <img id="avatar" src="/images/no.jpg" />
-  <a href="/blog">The blog</a>
+  <div id="other-medias-container">
+    <a href="/blog">The blog</a>
+    <svelte:component this={LinkedIn} />
+    <svelte:component this={GitHub} />
+  </div>
 </div>
 <Terminal />
 
@@ -46,8 +52,14 @@
   }
 
   #about-me-container {
-    /* TODO: center this properly */
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #other-medias-container {
+    display: flex;
+    flex-direction: row;
   }
 
   #avatar {
