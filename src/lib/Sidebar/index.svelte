@@ -19,9 +19,6 @@
 </script>
 
 <div class="sidebar">
-  <a class="logo" href="/">ERICKR.DEV</a>
-  <p>Welcome to my byte-sized blog! :)</p>
-  <p>"Doubt is not a pleasant condition, but certainty is absurd."</p>
   <div class="posts">
     {#each topics as { topic, subtopics }}
       {#if subtopics && subtopics.length > 0}
@@ -38,14 +35,6 @@
 </div>
 
 <style>
-  p {
-    margin: 0;
-  }
-
-  .logo {
-    text-align: center;
-  }
-
   .sidebar {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     padding-right: 2px;

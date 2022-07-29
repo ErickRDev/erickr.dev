@@ -1,23 +1,24 @@
 <script>
   import Terminal from '$lib/Terminal.svelte';
-  import GitHub from '$lib/Icons/GitHub.svelte';
-  import LinkedIn from '$lib/Icons/LinkedIn.svelte';
+  import NavBar from '$lib/NavBar.svelte';
 </script>
 
+<NavBar pageType="about-me" />
+<Terminal />
+
+<!--
 <div id="about-me-container">
   <img id="avatar" src="/images/no.jpg" />
-  <div id="other-medias-container">
-    <a href="/blog">The blog</a>
-    <svelte:component this={LinkedIn} />
-    <svelte:component this={GitHub} />
-  </div>
 </div>
-<Terminal />
+-->
 
 <style>
   :global(body) {
     margin: 0;
     box-sizing: border-box;
+    max-width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   :global(:root) {
@@ -55,11 +56,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  #other-medias-container {
-    display: flex;
-    flex-direction: row;
   }
 
   #avatar {

@@ -59,6 +59,10 @@
   });
 </script>
 
+<svelte:head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+</svelte:head>
+
 <div id="terminal-container">
   <div id="terminal-bar">
     <button on:click={() => (isMinimized = !isMinimized)}>-</button>
@@ -91,7 +95,7 @@
     margin-top: 1.5rem;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80ch;
+    max-width: 100ch;
   }
 
   #terminal-bar {
@@ -141,5 +145,8 @@
     flex-grow: 1;
     display: block;
     --space: 0.5rem; /* overriding .stack default spacing */
+    font-family: 'Roboto';
+    font-size: 1em;
+    /* margin-left: 0.5em; */
   }
 </style>

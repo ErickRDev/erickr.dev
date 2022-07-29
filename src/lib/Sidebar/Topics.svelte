@@ -1,13 +1,9 @@
 <script lang="ts">
-  import Fa from 'svelte-fa';
-  import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-
   export let text: string;
 </script>
 
 <div class="expandable">
   <span>{text}</span>
-  <Fa icon={faAngleDown} size="xs" />
 </div>
 <div class="topics-container">
   <slot />

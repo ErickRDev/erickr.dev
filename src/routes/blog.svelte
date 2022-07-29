@@ -1,12 +1,12 @@
 <script>
-  import BlogPost from '../lib/BlogPost.svelte';
-  import LFE from '../lib/LFE.svelte';
-  import Chart from '../lib/Chart.svelte';
+  import NavBar from '$lib/NavBar.svelte';
+  import BlogPost from '$lib/BlogPost.svelte';
+  import LFE from '$lib/LFE.svelte';
 </script>
 
+<NavBar pageType="blog" />
 <BlogPost>
   <LFE />
-  <!--<Chart />-->
 </BlogPost>
 
 <style>

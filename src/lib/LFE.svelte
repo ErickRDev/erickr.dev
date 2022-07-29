@@ -64,7 +64,12 @@
   }
 </script>
 
-<h1>The "Logistic Difference Equation"</h1>
+<svelte:head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Square+Peg">
+</svelte:head>
+
+<h1 style="font-family: Amatic SC">The "Logistic Difference Equation"</h1>
 
 <svg {width} {height}>
   <g transform="translate(0,0)">
