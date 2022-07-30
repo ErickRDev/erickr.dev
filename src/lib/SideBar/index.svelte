@@ -24,27 +24,8 @@
 
 <div class="container">
   <h1 style="font-family: Amatic SC">Topics  I've Rambled About</h1>
-  <div class="posts">
-    {#each topics as { topic, subtopics }}
-      {#if subtopics && subtopics.length > 0}
-        <Topics text={topic}>
-          {#each subtopics as subtopic}
-            <Topic text={subtopic} />
-          {/each}
-        </Topics>
-      {:else}
-        <Topic text={topic} />
-      {/if}
-    {/each}
-  </div>
+  <ul class="posts">
+    <li><a href="/blog">Index</a></li>
+    <li><a href="/blog/lfe">Logistic Difference Equation</a></li>
+  </ul>
 </div>
-
-<style>
-  .container {
-    /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
-  }
-
-  .posts {
-    max-width: 100%;
-  }
-</style>
