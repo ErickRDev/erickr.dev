@@ -41,7 +41,6 @@
   }
 
   #navbar {
-    min-height: 3vh;
     display: flex;
     align-items: center;
   }
@@ -54,13 +53,11 @@
   #logo {
     max-width: 100px;
     font-family: 'Amatic SC';
-    /* font-family: 'Square Peg'; */
     font-size: 2.2em;
   }
 
   #blog-button {
     font-family: 'Amatic SC';
-    /* font-family: 'Square Peg'; */
     font-size: 1.5em;
   }
 

@@ -5,29 +5,49 @@
 </script>
 
 <div class="container">
-  <div class="sidebar-container">
+  <div class="left-container">
     <SideBar />
   </div>
-  <div class="content-container">
-    <NavBar pageType="blog" />
-    <LFE />
+  <div class="middle-container">
+    <div class="navbar-container">
+      <NavBar pageType="blog" />
+    </div>
+    <div class="content-container">
+      <LFE />
+    </div>
+  </div>
+  <div class="right-container">
+    <SideBar />
   </div>
 </div>
 
 <style>
   .container {
     display: grid;
+    grid-template-rows: 7vh auto;
     grid-template-columns: 1fr 2fr 1fr;
     grid-auto-rows: minmax(100px, auto);
   }
 
-  .sidebar-container {
-    grid-row: 1 / last-line;
+  .left-container {
+    grid-row: 2 / last-line;
     grid-column: 1 / 2;
   }
 
-  .content-container {
-    grid-row: 1 / last-line;
+  .right-container {
+    grid-row: 2 / last-line;
+    grid-column: 3 / 4;
+  }
+
+  .middle-container {
     grid-column: 2 / 3;
+  }
+
+  .navbar-container {
+    grid-row: 1 / 2;
+  }
+
+  .content-container {
+    grid-row: 2 / last-line;
   }
 </style>

@@ -4,7 +4,7 @@
 
   const topics = [
     {
-      topic: 'Chaos',
+      topic: 'Glimpse of Chaos',
       subtopics: [
         'Logistic Difference Equation',
         'Cantor Set',
@@ -18,7 +18,12 @@
   ];
 </script>
 
-<div class="sidebar">
+<svelte:head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC" />
+</svelte:head>
+
+<div class="container">
+  <h1 style="font-family: Amatic SC">Topics  I've Rambled About</h1>
   <div class="posts">
     {#each topics as { topic, subtopics }}
       {#if subtopics && subtopics.length > 0}
@@ -35,9 +40,8 @@
 </div>
 
 <style>
-  .sidebar {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    padding-right: 2px;
+  .container {
+    /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
   }
 
   .posts {
