@@ -3,8 +3,12 @@
   import NavBar from '$lib/NavBar.svelte';
 </script>
 
-<NavBar pageType="about-me" />
-<Terminal />
+<div class="container">
+  <div class="content-container">
+    <NavBar pageType="about-me" />
+    <Terminal />
+  </div>
+</div>
 
 <!--
 <div id="about-me-container">
@@ -42,6 +46,17 @@
 
   :global(.stack > * + *) {
     margin-top: var(--space);
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-auto-rows: minmax(100px, auto);
+  }
+
+  .content-container {
+    grid-row: 1 / last-line;
+    grid-column: 2 / 3;
   }
 
   #about-me-container {

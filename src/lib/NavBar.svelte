@@ -36,11 +36,8 @@
 
 <style>
   #navbar-container {
-    max-width: 60vw;
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   #navbar {

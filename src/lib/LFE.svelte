@@ -65,44 +65,55 @@
 </script>
 
 <svelte:head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Square+Peg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Square+Peg" />
 </svelte:head>
 
-<h1 style="font-family: Amatic SC">The "Logistic Difference Equation"</h1>
+<div class="container">
+  <h1 style="font-family: Amatic SC">The "Logistic Difference Equation"</h1>
 
-<svg {width} {height}>
-  <g transform="translate(0,0)">
-    {#each data as dataPoint}
-      <circle r="1" cx={xScale(dataPoint[0])} cy={yScale(dataPoint[1])} fill="black" />
-    {/each}
-  </g>
+  <svg {width} {height}>
+    <g transform="translate(0,0)">
+      {#each data as dataPoint}
+        <circle r="1" cx={xScale(dataPoint[0])} cy={yScale(dataPoint[1])} fill="black" />
+      {/each}
+    </g>
 
-  <!-- y axis -->
-  <g transform="translate({margin.left},0)">
-    {#each yTicks as tick}
-      <g class="tick" opacity="1" transform="translate(0, {yScale(tick)})">
-        <line stroke="currentColor" x2="-5" />
-        <text dy="0.32em" fill="currentColor" x={5 - margin.left} font-size="smaller">
-          {tick.toFixed(1)}
-        </text>
-      </g>
-    {/each}
+    <!-- y axis -->
+    <g transform="translate({margin.left},0)">
+      {#each yTicks as tick}
+        <g class="tick" opacity="1" transform="translate(0, {yScale(tick)})">
+          <line stroke="currentColor" x2="-5" />
+          <text dy="0.32em" fill="currentColor" x={5 - margin.left} font-size="smaller">
+            {tick.toFixed(1)}
+          </text>
+        </g>
+      {/each}
 
-    <path class="axis-line" d={`M-1,${margin.top}H0V${height - margin.top}H-1`} />
-  </g>
+      <path class="axis-line" d={`M-1,${margin.top}H0V${height - margin.top}H-1`} />
+    </g>
 
-  <!-- x axis -->
-  <g transform="translate(0, {height - margin.bottom})">
-    {#each xTicks as tick}
-      <g class="tick" opacity="1" transform="translate({xScale(tick)}, 0)">
-        <line stroke="currentColor" y2="5" />
-        <text dx="-0.32em" dy="0.32em" fill="currentColor" y="10" font-size="smaller">
-          {tick}
-        </text>
-      </g>
-    {/each}
+    <!-- x axis -->
+    <g transform="translate(0, {height - margin.bottom})">
+      {#each xTicks as tick}
+        <g class="tick" opacity="1" transform="translate({xScale(tick)}, 0)">
+          <line stroke="currentColor" y2="5" />
+          <text dx="-0.32em" dy="0.32em" fill="currentColor" y="10" font-size="smaller">
+            {tick}
+          </text>
+        </g>
+      {/each}
 
-    <path class="axis-line" d={`M${margin.left},0V-1H${width - margin.right}V0`} />
-  </g>
-</svg>
+      <path class="axis-line" d={`M${margin.left},0V-1H${width - margin.right}V0`} />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .container {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+</style>
