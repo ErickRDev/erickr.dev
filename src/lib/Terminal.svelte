@@ -93,9 +93,6 @@
 
   #terminal-container {
     margin-top: 1.5rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100ch;
   }
 
   #terminal-bar {
