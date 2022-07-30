@@ -13,14 +13,6 @@
 -->
 
 <style>
-  :global(body) {
-    margin: 0;
-    box-sizing: border-box;
-    max-width: 60vw;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   :global(:root) {
     --ratio: 1.61803398875;
     --s-5: calc(var(--s-4) / var(--ratio));

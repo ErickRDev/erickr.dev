@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import GitHub from '$lib/Icons/GitHub.svelte';
   import LinkedIn from '$lib/Icons/LinkedIn.svelte';
   import Settings from './Icons/Settings.svelte';
@@ -9,30 +9,40 @@
 </script>
 
 <svelte:head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Square+Peg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Square+Peg" />
 </svelte:head>
 
-<nav id="navbar">
-  <ul class="container left-side">
-    <li><svelte:component this={LinkedIn} /></li>
-    <li><svelte:component this={GitHub} /></li>
-    {#if pageType === 'blog'}
-      <li><span id="blog-button"><a href="/">About me</a></span></li>
-    {:else}
-      <li><span id="blog-button"><a href="/blog">The blog</a></span></li>
-    {/if}
-  </ul>
-  <span id="logo">erickr.dev</span>
-  <div class="container right-side">
-    <svelte:component this={Settings} />
-  </div>
-</nav>
-<svg width=100% height='0.5em'>
-  <line x1='0' y1='0' x2='100%' y2='0' stroke='black'/>
-</svg>
+<div id="navbar-container">
+  <nav id="navbar">
+    <ul class="container left-side">
+      <li><svelte:component this={LinkedIn} /></li>
+      <li><svelte:component this={GitHub} /></li>
+      {#if pageType === 'blog'}
+        <li><span id="blog-button"><a href="/">About me</a></span></li>
+      {:else}
+        <li><span id="blog-button"><a href="/blog">The blog</a></span></li>
+      {/if}
+    </ul>
+    <span id="logo">erickr.dev</span>
+    <div class="container right-side">
+      <svelte:component this={Settings} />
+    </div>
+  </nav>
+  <svg width="100%" height="0.5em">
+    <line x1="0" y1="0" x2="100%" y2="0" stroke="black" />
+  </svg>
+</div>
 
 <style>
+  #navbar-container {
+    max-width: 60vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   #navbar {
     min-height: 3vh;
     display: flex;
@@ -44,7 +54,7 @@
     color: black;
   }
 
-  #logo{
+  #logo {
     max-width: 100px;
     font-family: 'Amatic SC';
     /* font-family: 'Square Peg'; */
@@ -76,5 +86,4 @@
     list-style-type: none;
     margin: 0 0.5%;
   }
-
 </style>

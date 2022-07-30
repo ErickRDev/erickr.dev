@@ -8,9 +8,3 @@
 <BlogPost>
   <LFE />
 </BlogPost>
-
-<style>
-  :global(body) {
-    margin: 0;
-  }
-</style>

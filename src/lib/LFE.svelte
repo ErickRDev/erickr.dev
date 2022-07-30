@@ -40,8 +40,8 @@
   const height = 202 + margin.bottom + margin.top;
 
   const x0 = 0.5;
-  const iterations = 600;
-  const sampleSize = 300;
+  const iterations = 400;
+  const sampleSize = 200;
 
   const data = generateLFEData(x0, iterations, sampleSize);
 
