@@ -1,12 +1,14 @@
 <script>
-  import Terminal from '$lib/Terminal.svelte';
   import NavBar from '$lib/NavBar.svelte';
+  import Terminal from '$lib/Terminal.svelte';
+  import Timeline from '$lib/Timeline.svelte';
 </script>
 
 <div class="container">
   <div class="content-container">
     <NavBar pageType="about-me" />
     <Terminal />
+    <Timeline />
   </div>
 </div>
 
