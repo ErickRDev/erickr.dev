@@ -1,6 +1,6 @@
 <script type="ts">
   import NavBar from '$lib/NavBar.svelte';
-  import SideBar from '$lib/SideBar/index.svelte';
+  import SideBar from '$lib/SideBar.svelte';
   import { page } from '$app/stores';
 
   console.log($page);
@@ -8,7 +8,7 @@
 
 <div class="container">
   <div class="navbar-container">
-    <NavBar pageType="blog"/>
+    <NavBar pageType="blog" />
   </div>
   <div class="sidebar-container">
     <SideBar />

@@ -1,7 +1,4 @@
 <script lang="ts">
-  import Topics from './Topics.svelte';
-  import Topic from './Topic.svelte';
-
   const topics = [
     {
       topic: 'Glimpse of Chaos',
@@ -23,9 +20,26 @@
 </svelte:head>
 
 <div class="container">
-  <h1 style="font-family: Amatic SC">Topics  I've Rambled About</h1>
-  <ul class="posts">
+  <h1 style="font-family: Amatic SC">Topics I've Rambled About</h1>
+  <ul class="topics">
     <li><a href="/blog">Index</a></li>
     <li><a href="/blog/lfe">Logistic Difference Equation</a></li>
   </ul>
 </div>
+
+<style>
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+  }
+
+  ul.topics {
+    list-style-type: none;
+  }
+</style>

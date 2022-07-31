@@ -1,5 +1,13 @@
-<script>
-  import LFE from '$lib/LFE.svelte';
-</script>
+<svelte:head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC" />
+</svelte:head>
 
-<p>Hello, World!</p>
+<p>Welcome!</p>
+
+<style>
+  p {
+    text-align: center;
+    font-family: Amatic SC;
+    font-size: 2em;
+  }
+</style>
