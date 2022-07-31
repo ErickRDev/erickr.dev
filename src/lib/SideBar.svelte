@@ -1,18 +1,12 @@
 <script lang="ts">
-  const topics = [
-    {
-      topic: 'Glimpse of Chaos',
-      subtopics: [
-        'Logistic Difference Equation',
-        'Cantor Set',
-        'The Koch Snowflake',
-        'Mandelbrot Set',
-        'Julia Set'
-      ]
-    },
-    { topic: 'Game Theory' },
-    { topic: 'CS:GO' }
-  ];
+  import { page } from '$app/stores';
+
+  type Topic = {
+    title: string;
+    route: string;
+  };
+
+  let topics: Topic[] = [{ title: 'Pictures of Chaos', route: '/blog/chaos' }];
 </script>
 
 <svelte:head>
@@ -20,17 +14,34 @@
 </svelte:head>
 
 <div class="container">
-  <h1 style="font-family: Amatic SC">Topics I've Rambled About</h1>
+  <h1 style="font-family: Amatic SC">What I've Rambled About</h1>
   <ul class="topics">
-    <li><a href="/blog">Index</a></li>
-    <li><a href="/blog/lfe">Logistic Difference Equation</a></li>
+    <a class:selected={$page.routeId === 'blog'} href="/blog">Hello, World</a>
+    {#each topics as topic}
+      <li>
+        <a class:selected={`/${$page.routeId}`.startsWith(topic.route)} href={topic.route}
+          >{topic.title}</a
+        >
+      </li>
+    {/each}
   </ul>
 </div>
 
 <style>
+  .container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   a {
     color: black;
     text-decoration: none;
+  }
+
+  a.selected {
+    background-color: black;
+    color: white;
   }
 
   a:hover {
@@ -41,5 +52,6 @@
 
   ul.topics {
     list-style-type: none;
+    padding: 0;
   }
 </style>

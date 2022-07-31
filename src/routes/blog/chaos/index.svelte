@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC" />
 </svelte:head>
 
-<h1>Hello, World!</h1>
+<h1>Pictures of Chaos</h1>
 
 <style>
   h1 {
