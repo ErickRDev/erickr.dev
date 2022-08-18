@@ -58,13 +58,21 @@
 
     const x = rightFacing ? width / 2 + 10 : width / 2 - 10;
 
+    /* const d = ` */
+      /* M ${rightFacing ? x-1 : x+1} ${y1-2} */
+      /* C ${x} ${y1-2}, ${x} ${y1-1}, ${x} ${y1} */
+      /* L ${x} ${y2-5} */
+      /* C ${x} ${y2-5}, ${x} ${y2}, ${rightFacing ? x+5 : x-5} ${y2} */
+      /* C ${rightFacing ? x+5 : x-5} ${y2}, ${x} ${y2}, ${x} ${y2+5} */
+      /* L ${x} ${y3} */
+      /* C ${x} ${y3}, ${x} ${y3+1}, ${rightFacing ? x-1 : x+1} ${y3+2} */
+    /* `; */
+
     const d = `
       M ${rightFacing ? x-1 : x+1} ${y1-2}
       C ${x} ${y1-2}, ${x} ${y1-1}, ${x} ${y1}
-      L ${x} ${y2-5}
-      C ${x} ${y2-5}, ${x} ${y2}, ${rightFacing ? x+5 : x-5} ${y2}
-      C ${rightFacing ? x+5 : x-5} ${y2}, ${x} ${y2}, ${x} ${y2+5}
-      L ${x} ${y3}
+      C ${x} ${y1}, ${x} ${y2}, ${rightFacing ? x+5 : x-5} ${y2}
+      C ${rightFacing ? x+5 : x-5} ${y2}, ${x} ${y2}, ${x} ${y3}
       C ${x} ${y3}, ${x} ${y3+1}, ${rightFacing ? x-1 : x+1} ${y3+2}
     `;
 
