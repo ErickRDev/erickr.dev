@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Typed from 'typed.js';
+import StdoutLine from './StdoutLine.svelte';
 
   const PS1 = '$';
   const FEEDBACKS = ['(╯°□°）╯︵ ┻━┻'];
@@ -14,9 +15,13 @@
 
     switch (stdin) {
       case 'echo $ABOUT_ME':
-        stdout.push(
-          "Howdie! Welcome to my little corner on the internet! My name is Erick and I'm a computer scientist who loves everything-software!"
-        );
+        const aboutMeMessage = [
+          "Howdie! \
+          Welcome to my little corner on the internet! \
+          My name is Erick and I'm a computer scientist who loves everything-software!",
+          "Type 'cat README'"
+        ];
+        aboutMeMessage.forEach((line: string) => stdout.push(line));
         break;
       case 'whoami':
         stdout.push('Erick Rocha');
@@ -26,9 +31,19 @@
       case 'clear':
         stdout.length = 0;
         break;
+      case 'canvas':
+        break;
       case '?':
         stdout.push('HALP!1!11');
         break;
+      case 'render':
+        stdout.push('USAGE:');
+        stdout.push('    render [OPTIONS] [RESOURCE]');
+        stdout.push('');
+        stdout.push('');
+        stdout.push('Where [resource] can be one of the following: experience, projects');
+        /* stdout.push('render <command>'); */
+        /* stdout.push('where <command> can be one of the following: experience, projects'); */ break;
       default:
         stdout.push(FEEDBACKS[0]);
         break;
@@ -60,7 +75,7 @@
 </script>
 
 <svelte:head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
 </svelte:head>
 
 <div id="terminal-container">
@@ -71,7 +86,7 @@
     <div id="terminal" on:click={focusStdin}>
       <div id="terminal-stdout" class="stack">
         {#each stdout as stdoutEntry}
-          <p>{stdoutEntry}</p>
+          <StdoutLine content={stdoutEntry} />
         {/each}
         {PS1}
         <input

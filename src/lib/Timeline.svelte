@@ -56,39 +56,45 @@
 
     const rightFacing = i % 2 == 0;
 
-    const x = rightFacing ? width / 2 + 10 : width / 2 - 10;
+    const x = rightFacing ? width / 2 + 50 : width / 2 - 50;
 
     /* const d = ` */
-      /* M ${rightFacing ? x-1 : x+1} ${y1-2} */
-      /* C ${x} ${y1-2}, ${x} ${y1-1}, ${x} ${y1} */
-      /* L ${x} ${y2-5} */
-      /* C ${x} ${y2-5}, ${x} ${y2}, ${rightFacing ? x+5 : x-5} ${y2} */
-      /* C ${rightFacing ? x+5 : x-5} ${y2}, ${x} ${y2}, ${x} ${y2+5} */
-      /* L ${x} ${y3} */
-      /* C ${x} ${y3}, ${x} ${y3+1}, ${rightFacing ? x-1 : x+1} ${y3+2} */
+    /* M ${rightFacing ? x-1 : x+1} ${y1-2} */
+    /* C ${x} ${y1-2}, ${x} ${y1-1}, ${x} ${y1} */
+    /* L ${x} ${y2-5} */
+    /* C ${x} ${y2-5}, ${x} ${y2}, ${rightFacing ? x+5 : x-5} ${y2} */
+    /* C ${rightFacing ? x+5 : x-5} ${y2}, ${x} ${y2}, ${x} ${y2+5} */
+    /* L ${x} ${y3} */
+    /* C ${x} ${y3}, ${x} ${y3+1}, ${rightFacing ? x-1 : x+1} ${y3+2} */
     /* `; */
 
     const d = `
-      M ${rightFacing ? x-1 : x+1} ${y1-2}
-      C ${x} ${y1-2}, ${x} ${y1-1}, ${x} ${y1}
-      C ${x} ${y1}, ${x} ${y2}, ${rightFacing ? x+5 : x-5} ${y2}
-      C ${rightFacing ? x+5 : x-5} ${y2}, ${x} ${y2}, ${x} ${y3}
-      C ${x} ${y3}, ${x} ${y3+1}, ${rightFacing ? x-1 : x+1} ${y3+2}
+      M ${rightFacing ? x - 1 : x + 1} ${y1 - 2}
+      C ${x} ${y1 - 2}, ${x} ${y1 - 1}, ${x} ${y1}
+      C ${x} ${y1}, ${x} ${y2}, ${rightFacing ? x + 12 : x - 12} ${y2}
+      C ${rightFacing ? x + 12 : x - 12} ${y2}, ${x} ${y2}, ${x} ${y3}
+      C ${x} ${y3}, ${x} ${y3 + 1}, ${rightFacing ? x - 1 : x + 1} ${y3 + 2}
     `;
+
+    /* const d = ` */
+    /* M ${rightFacing ? x-1 : x+1} ${y1-2} */
+    /* C ${x} ${y1-2}, ${rightFacing ? x+3 : x-3} ${y1-1}, ${rightFacing ? x+3 : x-3} ${y1} */
+    /* C ${x} ${y1}, ${rightFacing ? x+5 : x-5} ${y2}, ${rightFacing ? x+10 : x-10} ${y2} */
+    /* C ${rightFacing ? x+10 : x-10} ${y2}, ${rightFacing ? x+5 : x-5} ${y2}, ${rightFacing ? x+3 : x-3} ${y3} */
+    /* C ${rightFacing ? x+3 : x-3} ${y3}, ${x} ${y3+1}, ${rightFacing ? x-1 : x+1} ${y3+2} */
+    /* `; */
 
     return d;
   };
 
   const totalExperienceRange = [new Date(2012, 1, 1), new Date(2023, 1, 1)];
 
-  const timeScale = scaleTime()
-    .domain(totalExperienceRange)
-    .range([0, height]);
+  const timeScale = scaleTime().domain(totalExperienceRange).range([0, height]);
 
   const timeAxis = d3.axisLeft(timeScale);
 
   timeAxis.tickSize(0);
-  timeAxis.tickValues([]);
+  /* timeAxis.tickValues([]); */
 
   onMount(() => {
     const svg = d3
@@ -109,8 +115,8 @@
       .selectAll('text')
       .data(experiences)
       .join('text')
-      .attr('x', (_, i) => (i % 2 == 0 ? width / 2 + 30 : width / 2 - 120))
-      .attr('y', (d) => (timeScale(d.startDate) + timeScale(d.endDate || new Date(2023, 1, 1))) / 2)
+      .attr('x', (_, i) => (i % 2 == 0 ? width / 2 + 70 : width / 2 - 160))
+      .attr('y', (d) => (timeScale(d.startDate) + 10 + timeScale(d.endDate || new Date(2023, 1, 1))) / 2)
       .text((d) => d.company);
 
     // Tenure curves

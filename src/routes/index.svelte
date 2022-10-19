@@ -1,6 +1,6 @@
 <script>
   import NavBar from '$lib/NavBar.svelte';
-  import Terminal from '$lib/Terminal.svelte';
+  import Terminal from '$lib/Terminal/index.svelte';
   import Timeline from '$lib/Timeline.svelte';
 </script>
 
