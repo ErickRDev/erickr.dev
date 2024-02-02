@@ -6,7 +6,10 @@
     route: string;
   };
 
-  let topics: Topic[] = [{ title: 'Pictures of Chaos', route: '/blog/chaos' }];
+  let topics: Topic[] = [
+    { title: 'Reveries', route: '/blog/reveries' },
+    { title: 'Pictures of Chaos', route: '/blog/chaos' }
+  ];
 </script>
 
 <svelte:head>

@@ -9,11 +9,17 @@
   let subtopics: Topic[] = [];
 
   $: {
-    const re = /^blog\/(chaos|gametheory)\/?.*$/;
+    const re = /^blog\/(chaos|gametheory|reveries)\/?.*$/;
     const matches = $page.routeId?.match(re);
     const match = matches ? matches[1] : null;
 
     switch (match) {
+      case 'reveries':
+        subtopics = [
+          { title: 'On Effectiveness', route: 'reveries/on-effectiveness' }
+        ];
+      break;
+
       case 'chaos':
         subtopics = [
           { title: 'Intro', route: '/blog/chaos' },
